@@ -30,3 +30,32 @@ VALUES (
     'unityserve-logo.png'
 );
 
+CREATE TABLE project (
+    project_id SERIAL PRIMARY KEY,
+    organization_id INTEGER NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    location VARCHAR(150) NOT NULL,
+    date DATE NOT NULL,
+    CONSTRAINT project_organization_fk
+        FOREIGN KEY (organization_id)
+        REFERENCES organization(organization_id)
+);
+
+INSERT INTO project (organization_id, title, description, location, date)
+VALUES
+(1, 'Community School Renovation', 'Renovate classrooms and improve the school environment.', 'Cochabamba', '2026-09-20'),
+(1, 'Neighborhood Cleanup', 'Clean public areas and collect recyclable materials.', 'Cochabamba', '2026-09-27'),
+(1, 'Home Repair Assistance', 'Help families with basic home repairs.', 'Quillacollo', '2026-10-04'),
+(1, 'Community Garden Project', 'Build and prepare a garden for the local community.', 'Cochabamba', '2026-10-11'),
+(1, 'Youth Building Workshop', 'Teach young people basic construction and safety skills.', 'Cochabamba', '2026-10-18'),
+(2, 'Community Vegetable Garden', 'Plant vegetables and maintain a shared community garden.', 'Cochabamba', '2026-09-21'),
+(2, 'Tree Planting Day', 'Plant trees in a local community area.', 'Cochabamba', '2026-09-28'),
+(2, 'Organic Farming Workshop', 'Teach families basic organic farming practices.', 'Sacaba', '2026-10-05'),
+(2, 'Harvest Support Project', 'Help local growers harvest seasonal crops.', 'Sacaba', '2026-10-12'),
+(2, 'School Garden Program', 'Create a small educational garden at a local school.', 'Cochabamba', '2026-10-19'),
+(3, 'Food Donation Drive', 'Collect and distribute food to families in need.', 'Cochabamba', '2026-09-22'),
+(3, 'Senior Center Visit', 'Spend time with seniors and provide volunteer assistance.', 'Cochabamba', '2026-09-29'),
+(3, 'Children Reading Program', 'Read books and organize educational activities for children.', 'Cochabamba', '2026-10-06'),
+(3, 'Clothing Donation Event', 'Collect and distribute clothing to people in need.', 'Cochabamba', '2026-10-13'),
+(3, 'Community Service Day', 'Organize volunteers to support local community needs.', 'Cochabamba', '2026-10-20');
