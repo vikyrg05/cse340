@@ -59,3 +59,45 @@ VALUES
 (3, 'Children Reading Program', 'Read books and organize educational activities for children.', 'Cochabamba', '2026-10-06'),
 (3, 'Clothing Donation Event', 'Collect and distribute clothing to people in need.', 'Cochabamba', '2026-10-13'),
 (3, 'Community Service Day', 'Organize volunteers to support local community needs.', 'Cochabamba', '2026-10-20');
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO category (name)
+VALUES
+('Community Service'),
+('Environment'),
+('Education');
+
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    PRIMARY KEY (project_id, category_id),
+    CONSTRAINT project_category_project_fk
+        FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+    CONSTRAINT project_category_category_fk
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+);
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+(1, 3),
+(2, 2),
+(3, 1),
+(4, 2),
+(5, 3),
+(6, 2),
+(7, 2),
+(8, 3),
+(9, 1),
+(10, 3),
+(11, 1),
+(12, 1),
+(13, 3),
+(14, 1),
+(15, 1);
+
