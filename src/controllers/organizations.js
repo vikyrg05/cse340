@@ -13,6 +13,13 @@ const showOrganizationsPage = async (req, res) => {
 const showOrganizationDetailsPage = async (req, res) => {
     const organizationId = req.params.id;
     const organizationDetails = await getOrganizationDetails(organizationId);
+
+    if (!organizationDetails) {
+        const error = new Error('Organization Not Found');
+        error.status = 404;
+        throw error;
+    }
+
     const projects = await getProjectsByOrganizationId(organizationId);
     const title = 'Organization Details';
 

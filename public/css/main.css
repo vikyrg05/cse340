@@ -78,6 +78,23 @@ p {
     max-width: 800px;
 }
 
+.category-tag {
+    display: inline-block;
+    background-color: #a7d7c5;
+    color: #1f4e5f;
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    margin: 0.2rem;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+.category-tag:hover,
+.category-tag:focus {
+    background-color: #2f6f62;
+    color: white;
+}
+
 /* ==============================
    Images
    ============================== */
