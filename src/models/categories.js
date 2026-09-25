@@ -84,10 +84,40 @@ const getProjectsByCategoryId = async (categoryId) => {
     return result.rows;
 };
 
+const createCategory = async (name) => {
+    const query = `
+        INSERT INTO public.category (name)
+        VALUES ($1)
+        RETURNING category_id;
+    `;
+
+    const queryParams = [name];
+    const result = await db.query(query, queryParams);
+
+    if (result.rows.length === 0) {
+        throw new Error('Failed to create category');
+    }
+
+    return result.rows[0].category_id;
+};
+
+const updateCategory = async (id, name) => {
+    const query = `
+        UPDATE public.category
+        SET name = $1
+        WHERE category_id = $2;
+    `;
+
+    const queryParams = [name, id];
+    await db.query(query, queryParams);
+};
+
 export {
     getAllCategories,
     getCategoryById,
     getCategoriesByProjectId,
     getProjectsByCategoryId,
-    updateCategoryAssignments
+    updateCategoryAssignments,
+    createCategory,
+    updateCategory
 }
